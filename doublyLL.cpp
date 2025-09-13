@@ -1,5 +1,7 @@
 #include <iostream>
 
+// most other functions are similar to singly linked list
+
 struct Node{
     int val;
     Node* prev = nullptr;
