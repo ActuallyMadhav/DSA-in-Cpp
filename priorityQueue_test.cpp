@@ -15,5 +15,7 @@ int main(){
         pq.pop();
     }
 
+    // priority queue implements a max heap by default.
+
     return 0;
 }
