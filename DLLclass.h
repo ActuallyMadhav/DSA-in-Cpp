@@ -1,3 +1,6 @@
+#ifndef DLLCLASS_H
+#define DLLCLASS_H
+
 #include <iostream>
 #include <list>     // in built doubly linked list from stl
 
@@ -24,7 +27,7 @@ public:
     void addBack(const E& e);   // insert element at back
     void removeFront(); // remove front element
     void removeBack();  // remove back element
-    void printList() const; // print list
+    void printList(); // print list
 
 private:
     Dnode<E>* head;
@@ -111,7 +114,7 @@ void DLinkedList<E>::removeFront(){
 }
 
 template <typename E>
-void DLinkedList<E>::printList() const{
+void DLinkedList<E>::printList(){
     Dnode<E>* cur = head->next;
     while (cur != tail) {
         std::cout << cur->val << " <-> ";
@@ -120,17 +123,5 @@ void DLinkedList<E>::printList() const{
     std::cout << "NULL" << '\n';
 }
 
-int main(){
-    DLinkedList<int> numList;
 
-    std::cout << numList.empty() << '\n';
-    numList.addFront(1);
-    numList.addFront(0);
-    numList.addFront(-1);
-    numList.addBack(2);
-    numList.addBack(3);
-    numList.printList();
-    std::cout << numList.empty() << '\n';
-
-    return 0;
-}
+#endif
