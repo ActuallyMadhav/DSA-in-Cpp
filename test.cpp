@@ -1,6 +1,6 @@
 #include <iostream>
-#include "SLLclass.h"
-#include "DLLclass.h"
+#include "SLLclass.hpp"
+#include "DLLclass.hpp"
 
 int main(){
 
