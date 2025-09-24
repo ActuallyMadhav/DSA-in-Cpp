@@ -1,5 +1,5 @@
-#ifndef BINARYSEARCH_H
-#define BINARYSEARCH_H
+#ifndef BINARYSEARCH_HPP
+#define BINARYSEARCH_HPP
 #include <iostream>
 #include <vector>
 

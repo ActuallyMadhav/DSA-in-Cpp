@@ -1,5 +1,5 @@
-#ifndef LLCLASS_H
-#define LLCLASS_H
+#ifndef LLCLASS_HPP
+#define LLCLASS_HPP
 
 #include <iostream>
 

@@ -1,5 +1,5 @@
-#ifndef DLLCLASS_H
-#define DLLCLASS_H
+#ifndef DLLCLASS_HPP
+#define DLLCLASS_HPP
 
 #include <iostream>
 #include <list>     // in built doubly linked list from stl
