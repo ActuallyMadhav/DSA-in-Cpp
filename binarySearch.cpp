@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include "binarySearch.h"
+#include "binarySearch.hpp"
 
 int main(){
     std::vector<std::string> movies = {"conjuring", "toy story", "Dhoom", "Dhoom 2"};
