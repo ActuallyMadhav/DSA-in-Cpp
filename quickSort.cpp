@@ -46,9 +46,7 @@ int partition(std::vector<int>& arr, int start, int end){
     }
     i++; 
 
-    int temp = arr[i];
-    arr[i] = arr[end];
-    arr[end] = temp;
+    std::swap(arr[i], arr[end]);
 
     return pivot;
 }
