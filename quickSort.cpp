@@ -41,9 +41,7 @@ int partition(std::vector<int>& arr, int start, int end){
     for(int j = start; j < end - 1; j++){
         if(arr[j] < pivot){
             i++;
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+            std::swap(arr[i], arr[j]);
         }
     }
     i++; 
