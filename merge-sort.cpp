@@ -61,26 +61,26 @@ void merge(std::vector<int>& leftArr, std::vector<int>& rightArr, std::vector<in
     // check conditions for merging
     while(l < leftSize && r < rightSize){
         if(leftArr[l] < rightArr[r]){
-            arr[i] = leftArr[l];
-            i++;
-            l++;
+            arr[i++] = leftArr[l++];
+            // i++;
+            // l++;
         }
         else{
-            arr[i] = rightArr[r];
-            i++;
-            r++;
+            arr[i++] = rightArr[r++];
+            // i++;
+            // r++;
         }
     }
 
     while(l < leftSize){
-        arr[i] = leftArr[l];
-        i++;
-        l++;
+        arr[i++] = leftArr[l++];
+        // i++;
+        // l++;
     }
 
     while(r < rightSize){
-        arr[i] = rightArr[r];
-        i++;
-        r++;
+        arr[i++] = rightArr[r++];
+        // i++;
+        // r++;
     }
 }
