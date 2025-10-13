@@ -38,7 +38,7 @@ int partition(std::vector<int>& arr, int start, int end){
     int pivot = arr[end];
     int i = start - 1;
 
-    for(int j = start; j < end - 1; j++){
+    for(int j = start; j < end; j++){
         if(arr[j] < pivot){
             i++;
             std::swap(arr[i], arr[j]);
@@ -48,5 +48,5 @@ int partition(std::vector<int>& arr, int start, int end){
 
     std::swap(arr[i], arr[end]);
 
-    return pivot;
+    return i;
 }

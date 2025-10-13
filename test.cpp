@@ -1,6 +1,8 @@
 #include <iostream>
 #include "SLLclass.hpp"
 #include "DLLclass.hpp"
+#include "quicksortTemplate.hpp"
+#include <ctime>
 
 int main(){
 
@@ -17,6 +19,24 @@ int main(){
     movies.addBack("Toy Story");
     movies.addFront("Social Network");
     movies.printList();
+
+    srand(time(NULL));
+    std::vector<int> numVec;
+    for(int i = 0; i < 10; i++){
+        int x = rand() % 100 + 1;
+        numVec.push_back(x);
+    }
+
+    for(auto x : numVec) std::cout << x << ' ';
+
+    std::cout << '\n';
+
+    quicksort(numVec, 0, numVec.size()-1);
+
+    for(auto x : numVec) std::cout << x << ' ';
+
+    std::cout << '\n';
+
 
     return 0;
 }
