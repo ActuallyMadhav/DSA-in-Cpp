@@ -5,19 +5,21 @@
 #include <vector>
 #include <algorithm>
 
+///////////////////////////////////// STD::VECTOR (DYNAMIC ARRAY) ///////////////////////////////
 template <typename T>
 int partition(std::vector<T>& arr, int left, int right);
 
 template <typename T>
 void quicksort(std::vector<T>& arr, int left, int right);
 
+///////////////////////////////////// C-STYLE ARRAY ///////////////////////////////
 template <typename T>
 int partition(T* arr, int left, int right);
 
 template <typename T>
 void quicksort(T* arr, int left, int right);
 
-
+///////////////////////////////////// STD::VECTOR (DYNAMIC ARRAY) ///////////////////////////////
 template <typename T>
 int partition(std::vector<T>& arr, int left, int right){
     T pivot = arr[right];
@@ -43,6 +45,7 @@ void quicksort(std::vector<T>& arr, int left, int right){
     quicksort(arr, pivot + 1, right);
 }
 
+///////////////////////////////////// C-STYLE ARRAY ///////////////////////////////
 template <typename T>
 int partition(T* arr, int left, int right){
     T pivot = arr[right];
