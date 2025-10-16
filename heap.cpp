@@ -1,0 +1,107 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+
+class Heap{
+    private:
+        std::vector<int> heap;
+
+        int leftChild(int index){
+            // return 2*index;      // if heap is 1-indexed
+            return 2*index + 1;
+        }
+
+        int rightChild(int index){
+            return 2*index + 2;
+        }
+
+        int parent(int index){
+            return (index-1) / 2;
+        }
+    
+    public:
+        void printHeap(){
+            std::cout << "\n[";
+            for(size_t i = 0; i < heap.size(); i++){
+                std::cout << heap[i];
+                if(i < heap.size()-1){std::cout << ", ";}
+            }
+            std::cout << ']' << '\n';
+        }
+
+        void insert(int value){
+            heap.push_back(value);
+            int cur = heap.size()-1;
+
+            while(cur > 0 && heap[cur] > heap[parent(cur)]){
+                std::swap(heap[cur], heap[parent(cur)]);
+                cur = parent(cur);
+            }
+        }
+
+        void sinkDown(int index){
+            int maxIndex = index;
+
+            while(true){
+                int leftIndex = leftChild(index);
+                int rightIndex = rightChild(index);
+
+                if(leftIndex < heap.size() && heap[leftIndex] > heap[maxIndex]){
+                    maxIndex = leftIndex;
+                }
+
+                if(rightIndex < heap.size() && heap[rightIndex] > heap[maxIndex]){
+                    maxIndex = rightIndex;
+                }
+
+                if(maxIndex != index){
+                    std::swap(heap[maxIndex], heap[index]);
+                    index = maxIndex;
+                }
+                else{
+                    return;
+                }
+            }
+        }
+
+        int remove(){
+            if(heap.empty()) return INT_MIN;
+
+            int maxValue = heap.front();
+
+            if(heap.size() == 1){
+                heap.pop_back();
+            }
+            else{
+                heap[0] = heap.back();
+                heap.pop_back();
+                sinkDown(0);
+            }
+
+            return maxValue;
+        }
+};
+
+int main(){
+    Heap* myHeap = new Heap();
+
+    myHeap->insert(99);
+    myHeap->insert(72);
+    myHeap->insert(61);
+    myHeap->insert(58);
+
+    myHeap->printHeap();
+
+    myHeap->insert(100);
+    myHeap->printHeap();
+
+    myHeap->insert(75);
+    myHeap->printHeap();
+
+    myHeap->remove();
+    myHeap->printHeap();
+
+    myHeap->remove();
+    myHeap->printHeap();
+}
