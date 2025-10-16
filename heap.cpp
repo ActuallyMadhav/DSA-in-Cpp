@@ -81,6 +81,20 @@ class Heap{
 
             return maxValue;
         }
+
+        std::vector<int> heapSort(){
+            std::vector<int> sorted;
+            std::vector<int> original = heap;
+
+            while(!heap.empty()){
+                sorted.push_back(remove());
+            }
+
+            std::reverse(sorted.begin(), sorted.end()); // makes into ascending order
+
+            heap = original;
+            return sorted;
+        }
 };
 
 int main(){
@@ -104,4 +118,8 @@ int main(){
 
     myHeap->remove();
     myHeap->printHeap();
+
+    std::vector<int> sorted = myHeap->heapSort();
+    for(int x : sorted){std::cout << x << ' ';}
+    std::cout << '\n';
 }
