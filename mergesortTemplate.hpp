@@ -28,32 +28,39 @@ void merge(std::vector<T>& arr, std::vector<T>& left, std::vector<T>& right){
     int i,j,k;
     i = j = k = 0;
 
+    // compare elements from left to right. insert smaller one into arr
     while(i < leftSize && j < rightSize){
         if(left[i] < right[j]){arr[k++] = left[i++];}
         else{arr[k++] = right[j++];}
     }
 
+    // copy remaining elements from left to arr
     while(i < leftSize){arr[k++] = left[i++];}
+    //copy remaining elements from right to arr
     while(j < rightSize){arr[k++] = right[j++];}
 }
 
 template <typename T>
 void mergeSort(std::vector<T>& arr){
     int n = arr.size();
-    if(n < 2) return;
+    if(n < 2) return;   // base case -> array alr sorted
 
     int mid = n / 2;
 
+    // create left and right sub arrays
     std::vector<T> left(mid);
     std::vector<T> right(n - mid);
 
+    // populate left and right arrays. left = left half; right = right half
     for(int i = 0; i < n; i++){
         if(i < mid){left[i] = arr[i];}
         else{right[i - mid] = arr[i];}
     }
 
+    // recursively sort both left and right
     mergeSort(left);
     mergeSort(right);
+    // merge sorted left and right into arr
     merge(arr, left, right);
 }
 
@@ -77,6 +84,7 @@ void mergeSort(T* arr, int size){
     if(size < 2) return;
     int mid = size/2;
 
+    // dynamically allocate memory for left and right halves
     T* left = new T[mid];
     T* right = new T[size-mid];
 
@@ -89,6 +97,7 @@ void mergeSort(T* arr, int size){
     mergeSort(right, size-mid);
     merge(arr, left, right, mid, size-mid);
 
+    // free dynamically allocated memory
     delete[] left;
     delete[] right;
 }
