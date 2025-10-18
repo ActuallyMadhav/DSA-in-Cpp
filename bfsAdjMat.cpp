@@ -4,7 +4,7 @@
 #include <algorithm>
 
 // Function to perform Breadth-First Search (BFS) on a graph represented as an adjacency matrix
-void bfs(std::vector<std::vector<int>> A, int s) {
+void bfs(std::vector<std::vector<int>>& A, int s) {
     // Vector to keep track of visited nodes
     std::vector<bool> visited(A.size(), false);
     // Queue to manage the BFS traversal
