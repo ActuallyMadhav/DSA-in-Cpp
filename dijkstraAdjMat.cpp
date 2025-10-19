@@ -3,10 +3,11 @@
 #include <algorithm>
 #include <climits>
 
-std::vector<int> dijkstra(std::vector<std::vector<int>>& A, int s){
+std::pair<std::vector<int>, std::vector<int>> dijkstra(const std::vector<std::vector<int>>& A, int s){
     int V = A.size();
     std::vector<int> dist(V, INT_MAX);
     std::vector<bool> visited(V, false);
+    std::vector<int> pi(V, -1);
 
     dist[s] = 0;
 
@@ -26,18 +27,28 @@ std::vector<int> dijkstra(std::vector<std::vector<int>>& A, int s){
             if(!visited[v] && A[u][v] != INT_MAX){
                 if(dist[u] + A[u][v] < dist[v]){
                     dist[v] = dist[u] + A[u][v];
+                    pi[v] = u;
                 }
             }
         }
     }
 
-    return dist;
+    return {dist, pi};
 }
 
 void printDist(std::vector<int> dist){
     for(int i = 0; i < dist.size(); i++){
         std::cout << "Distance to node " << i << ": " << dist[i] << '\n';
     }
+}
+
+void printPath(int target, const std::vector<int>& pi){
+    if(pi[target] == -1){
+        std::cout << target;
+        return;
+    }
+    printPath(pi[target], pi);
+    std::cout << " -> " << target;
 }
 
 int main(){
@@ -52,7 +63,20 @@ int main(){
 
     };
 
-    std::vector<int> dist = dijkstra(adjMat, 0);
+    std::pair<std::vector<int>, std::vector<int>> result = dijkstra(adjMat, 0);
+    std::vector<int> dist = result.first;
+    std::vector<int> pi = result.second;
     printDist(dist);
+
+    for(int i = 0; i < pi.size(); i++){
+        std::cout << "Path to node: " << i << ": ";
+        if(dist[i] == INT_MAX){
+            std::cout << "UNREACHABLE" << '\n';
+        }
+        else{
+            printPath(i, pi);
+            std::cout << '\n';
+        }
+    }
     return 0;
 }
