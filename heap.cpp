@@ -3,6 +3,20 @@
 #include <algorithm>
 #include <climits>
 
+/*
+instead of making custom heap class:
+
+MAX HEAP:
+    std::priority_queue<int> maxHeap;   // by default, std:priority_queue is a MAX HEAP
+
+MIN HEAP:
+    std::priority_queue<
+        int,                // type of element stored in heap
+        std::vector<int>    // underlying container
+        std::greater<int>   // comparator to make into min heap
+    >minHeap;
+*/
+
 class Heap{
     private:
         std::vector<int> heap;
