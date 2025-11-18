@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
+#include <climits>  // required for INT_MAX -> depends on compiler
 
 std::pair<std::vector<int>, std::vector<int>> dijkstra(const std::vector<std::vector<std::pair<int,int>>>& A, int s){
     int V = A.size();
