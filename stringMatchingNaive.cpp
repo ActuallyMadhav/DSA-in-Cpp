@@ -25,7 +25,7 @@
 
 // alternatively:
 
-int bruteForceMatch(std::string text, std::string pattern){
+int bruteForceMatch(const std::string& text, const std::string& pattern){
     int textSize = text.size();
     int patternSize = pattern.size();
 
