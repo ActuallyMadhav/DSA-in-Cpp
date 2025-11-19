@@ -25,17 +25,27 @@
 
 // alternatively:
 
-int bruteForceMatch(std::string pattern, std::string text){
+int bruteForceMatch(std::string text, std::string pattern){
     int textSize = text.size();
     int patternSize = pattern.size();
 
-    for(int i = 0; i < textSize - patternSize; i++){
+    for(int i = 0; i <= textSize - patternSize; i++){
         int j = 0;
 
         while(j < patternSize && text[i + j] == pattern[j]){
             j++;
         }
         if(j == patternSize) return i;
-        return -1;  // no match found
     }
+    return -1;  // no match found
+}
+
+int main(){
+    std::string substr = "hello";
+    std::string text = "hi hello bye bye";
+
+    int pos = bruteForceMatch(text, substr);
+
+    (pos == -1) ? std::cout << "Substring not found" << '\n' : std::cout << "Subtring found at " << pos << '\n';
+    return 0;
 }
