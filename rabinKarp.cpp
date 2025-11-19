@@ -40,7 +40,7 @@ void rabinKarp(const std::string& text, const std::string& pattern){
         // compute hash for next window
         if(i < n-m){
             tHash = (base * (tHash - text[i] * h) + text[i+m]) % prime;
-            if(tHash < 0) tHash += prime;
+            if(tHash < 0){tHash += prime;}
         }
     }
 
