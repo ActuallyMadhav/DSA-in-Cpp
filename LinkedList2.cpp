@@ -1,15 +1,16 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <optional>
 
 template <typename T> class LinkedList;
 
 template <typename T>
 class Node{
-    private:
+    public:
         T val;
         Node* next;
-    public:
+    
         Node(T val){
             this->val = val;
             this->next = nullptr;
@@ -119,6 +120,7 @@ class LinkedList{
             length--;
         }
 
+        // this returns an address:
         Node<T>* get(int idx){
             if(idx < 0 || idx >= length) return nullptr;
 
@@ -128,6 +130,16 @@ class LinkedList{
             }
             return cur;
         }
+
+        bool set(int idx, T value){
+            Node<T>* temp = get(idx);
+            if(temp){
+                temp->val = value;
+                return true;
+            }
+            return false;
+        }
+        
 };
 
 template <typename T>
@@ -144,26 +156,17 @@ void LinkedList<T>::printList(){
 
 int main(){
 
-    LinkedList<int>* myLL = new LinkedList<int>(10);
-    myLL->append(11);
-    myLL->append(12);
+    LinkedList<int>* myLL = new LinkedList<int>(0);
 
-    myLL->printList();
-    
-    myLL->deleteLast();
-    
-    myLL->printList();
+    myLL->append(1);
+    myLL->append(2);
+    myLL->append(3);
 
-    myLL->prepend(9);
+    std::cout << myLL->get(2)->val << '\n';
 
-    myLL->printList();
-
-    myLL->deleteFirst();
-    myLL->printList();
-
-    std::cout << "Head: " << myLL->getHead() << '\n';
-    std::cout << "Tail: " << myLL->getTail() << '\n';
-    std::cout << "Length: " << myLL->getLength() << '\n';
+    // std::cout << "Head: " << myLL->getHead() << '\n';
+    // std::cout << "Tail: " << myLL->getTail() << '\n';
+    // std::cout << "Length: " << myLL->getLength() << '\n';
 
     return 0;
 }
