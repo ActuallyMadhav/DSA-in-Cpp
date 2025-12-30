@@ -162,7 +162,10 @@ int main(){
     myLL->append(2);
     myLL->append(3);
 
-    std::cout << myLL->get(2)->val << '\n';
+    myLL->printList();
+
+    myLL->set(1, 4);
+    myLL->printList();
 
     // std::cout << "Head: " << myLL->getHead() << '\n';
     // std::cout << "Tail: " << myLL->getTail() << '\n';
