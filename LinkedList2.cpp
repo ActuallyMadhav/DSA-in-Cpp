@@ -1,79 +1,159 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
+
+template <typename T> class LinkedList;
 
 template <typename T>
 class Node{
-public:
-    T val;
-    Node<T>* next;
-
-    //constructor
-    Node(T val){
-        this->val = val;
-        this->next = nullptr;
-    }
+    private:
+        T val;
+        Node* next;
+    public:
+        Node(T val){
+            this->val = val;
+            this->next = nullptr;
+        }
+    friend class LinkedList<T>;
 };
 
 template <typename T>
 class LinkedList{
-private:
-    Node<T>* head;
-    Node<T>* tail;
-    int length;
-
-public:
+    private:
+        Node<T>* head;
+        Node<T>* tail;
+        int length;
     
-    // constructor
-    LinkedList(T value){
-        Node<T>* newNode = new Node<T>(value);
-        this->head = newNode;
-        this->tail = newNode;
-        this->length = 1;
-    }
-
-    // destructor
-    ~LinkedList(){
-        Node<T>* temp = this->head;
-        while(this->head){
-            this->head = this->head->next;
-            delete temp;
-            Node<T>* temp = this->head;
-        }
-    }
-
-    // printing values
-    void printList(){
-        Node<T>* temp = this->head;
-
-        while(temp){
-            std::cout << temp->val << " -> ";
-            temp = temp->next;
-        }
-    }
-
-    void getHead(){
-        std::cout << "Head: " << this->head->val << '\n';
-    }
-
-    void getTail(){
-        std::cout << "Tail: " << this->tail->val << '\n';
-    }
-
-    void getLength(){
-        std::cout << "Length: " << this->length << '\n';
-    }
-
-    void append(T value){
-        Node<T>* newNode = new Node<T>(value);
-
-        if(!this->length){  // if length == 0
+    public:
+        LinkedList(T val){
+            Node<T>* newNode = new Node<T>(val);
             this->head = newNode;
             this->tail = newNode;
+            this->length = 1;
         }
-        else{
-            this->tail->next = newNode;
-            this->tail = newNode;
+
+        T getHead(){
+            return this->head->val;
         }
-        (this->length)++;
-    }
+        
+        T getTail(){
+            return this->tail->val;
+        }
+
+        int getLength(){return this->length;}
+
+        void printList();
+
+        ~LinkedList(){
+            Node<T>* temp = head;
+            while(head){
+                head = head->next;
+                delete temp;
+                temp = head;
+            }
+        }
+
+        void append(T val){
+            Node<T>* newNode = new Node<T>(val);
+            if(!head){
+                head = newNode;
+                tail = newNode;
+            }
+            else{
+                tail->next = newNode;
+                tail = newNode;
+            }
+            length++;
+        }
+
+        void deleteLast(){
+            if(!head) return;
+
+            Node<T>* cur = head;
+
+            if(length == 1){
+                delete head;
+                head = nullptr;
+                tail = nullptr;
+            }
+
+            else{
+                while(cur->next->next){
+                    cur = cur->next;
+                }
+                delete cur->next;
+                tail = cur;
+                tail->next = nullptr;
+            }
+            length--;
+        }
+
+        void prepend(T value){
+            Node<T>* newNode = new Node<T>(value);
+            if(!head){
+                head = newNode;
+                tail = newNode;
+                head->next = nullptr;
+                tail->next = nullptr;
+            }
+            else{
+                newNode->next = head;
+                head = newNode;
+            }
+            length++;
+        }
+
+        void deleteFirst(){
+            if(!head) return;
+
+            Node<T>* temp = head;
+            if(length == 1){
+                delete head;
+                head = nullptr;
+                tail = nullptr;
+            }
+            else{
+                head = head->next;
+            }
+            delete temp;
+            length--;
+        }
 };
+
+template <typename T>
+void LinkedList<T>::printList(){
+    Node<T>* cur = head;
+    while(cur){
+        std::cout << cur->val << ' ';
+        cur = cur->next;
+    }
+
+    std::cout << '\n';
+}
+
+
+int main(){
+
+    LinkedList<int>* myLL = new LinkedList<int>(10);
+    myLL->append(11);
+    myLL->append(12);
+
+    myLL->printList();
+    
+    myLL->deleteLast();
+    
+    myLL->printList();
+
+    myLL->prepend(9);
+
+    myLL->printList();
+
+    myLL->deleteFirst();
+    myLL->printList();
+
+    std::cout << "Head: " << myLL->getHead() << '\n';
+    std::cout << "Tail: " << myLL->getTail() << '\n';
+    std::cout << "Length: " << myLL->getLength() << '\n';
+
+    return 0;
+}
