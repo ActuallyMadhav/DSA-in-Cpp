@@ -118,6 +118,16 @@ class LinkedList{
             delete temp;
             length--;
         }
+
+        Node<T>* get(int idx){
+            if(idx < 0 || idx >= length) return nullptr;
+
+            Node<T>* cur = head;
+            for(int i = 0; i < idx; i++){
+                cur = cur->next;
+            }
+            return cur;
+        }
 };
 
 template <typename T>
