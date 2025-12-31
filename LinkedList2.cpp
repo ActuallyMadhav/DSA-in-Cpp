@@ -26,6 +26,7 @@ class LinkedList{
         int length;
     
     public:
+        // constructor
         LinkedList(T val){
             Node<T>* newNode = new Node<T>(val);
             this->head = newNode;
@@ -33,6 +34,7 @@ class LinkedList{
             this->length = 1;
         }
 
+        // getters
         T getHead(){
             return this->head->val;
         }
@@ -43,8 +45,10 @@ class LinkedList{
 
         int getLength(){return this->length;}
 
+        // print list, defined outside
         void printList();
 
+        // destructor
         ~LinkedList(){
             Node<T>* temp = head;
             while(head){
@@ -54,6 +58,7 @@ class LinkedList{
             }
         }
 
+        // add node at end - append node
         void append(T val){
             Node<T>* newNode = new Node<T>(val);
             if(!head){
@@ -67,6 +72,7 @@ class LinkedList{
             length++;
         }
 
+        // delete last node
         void deleteLast(){
             if(!head) return;
 
@@ -89,6 +95,7 @@ class LinkedList{
             length--;
         }
 
+        // add node at beginning - prepend node
         void prepend(T value){
             Node<T>* newNode = new Node<T>(value);
             if(!head){
@@ -104,6 +111,7 @@ class LinkedList{
             length++;
         }
 
+        // delete first node
         void deleteFirst(){
             if(!head) return;
 
@@ -121,6 +129,7 @@ class LinkedList{
         }
 
         // this returns an address:
+        // get node at index
         Node<T>* get(int idx){
             if(idx < 0 || idx >= length) return nullptr;
 
@@ -131,6 +140,7 @@ class LinkedList{
             return cur;
         }
 
+        // set value of node at index
         bool set(int idx, T value){
             Node<T>* temp = get(idx);
             if(temp){
@@ -140,6 +150,31 @@ class LinkedList{
             return false;
         }
         
+        // insert at index
+        void insert(int index, T value){
+            if(index < 0 || index > length){
+                std::cout << "Invalid index" << '\n';
+                return;
+            }
+
+            if(index == 0){
+                prepend(value); // prepend increments length
+            }
+            else if(index == length){
+                append(value);  // append increments length
+            }
+            else{
+                Node<T>* newNode = new Node<T>(value);
+                Node<T>* cur = head;
+
+                for(int i = 0; i < index-1; i++){   // stop before index
+                    cur = cur->next;
+                }
+                newNode->next = cur->next;
+                cur->next = newNode;
+                length++;
+            }
+        }
 };
 
 template <typename T>
