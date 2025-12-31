@@ -199,8 +199,13 @@ int main(){
 
     myLL->printList();
 
-    myLL->set(1, 4);
-    myLL->printList();
+    // myLL->set(1, 4);
+    // myLL->printList();
+
+    // myLL->insert(0, -1);
+    // myLL->insert(5, 4);
+    // myLL->insert(3, 7);
+    // myLL->printList();
 
     // std::cout << "Head: " << myLL->getHead() << '\n';
     // std::cout << "Tail: " << myLL->getTail() << '\n';
