@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <optional>
 
 template <typename T> class LinkedList;
 
