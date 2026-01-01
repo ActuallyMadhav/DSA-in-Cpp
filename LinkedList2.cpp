@@ -174,6 +174,26 @@ class LinkedList{
                 length++;
             }
         }
+
+        // delete at index
+        void deleteNode(int index){
+            if(index >= length || index < 0) return;
+
+            if(index == 0){
+                deleteFirst();
+            }
+            else if(index == length - 1){
+                deleteLast();
+            }
+            else{
+                Node<T>* temp = get(index - 1);
+                Node<T>* toDelete = temp->next;
+
+                temp->next = toDelete->next;
+                delete toDelete;
+                length--;
+            }
+        }
 };
 
 template <typename T>
