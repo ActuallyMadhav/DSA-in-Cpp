@@ -194,6 +194,40 @@ class LinkedList{
                 length--;
             }
         }
+
+        // reverse linked list
+        void reverse(){
+            Node<T>* cur = head;
+            Node<T>* prev = nullptr;
+
+            // old head becomes new tail
+            tail = head;
+
+            while(cur){
+                Node<T>* temp = cur->next;
+                cur->next = prev;
+                prev = cur;
+                cur = temp;
+            }
+            head = prev;
+        }
+
+        // alternative reverse using tail and length
+        void reverse2(){
+            Node<T>* temp = head;
+            head = tail;
+            tail = temp;
+            Node<T>* after = temp->next;
+            Node<T>* before = nullptr;
+
+            for(int i = 0; i < length; ++i){
+                after = temp->next;
+                temp->next = before;
+                before = temp;
+                temp = after;
+            }
+
+        }
 };
 
 template <typename T>
@@ -216,6 +250,12 @@ int main(){
     myLL->append(2);
     myLL->append(3);
 
+    myLL->printList();
+
+    myLL->reverse();
+    myLL->printList();
+
+    myLL->reverse2();
     myLL->printList();
 
     // myLL->set(1, 4);
